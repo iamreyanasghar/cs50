@@ -1,0 +1,28 @@
+
+sort1 (bubble sort)
+random 5000       time =  0.171
+sorted 5000       time =  0.058
+reversed 5000     time =  0.234
+
+random 10000      time = 0.547
+sorted 10000      time = 0.096
+reversed 10000    time = 0.479
+
+andom 10000       time = 10.897
+sorted 10000      time = 
+reversed 10000    time = 
+
+
+sort2 (merged sort)
+random 5000       time =  0.067
+sorted 5000       time =  0.057
+reversed 5000     time =  0.055
+
+
+
+
+sort3 (selection sort)
+random 5000       time =  0.106
+sorted 5000       time =  0.106
+reversed 5000     time =  0.066
+

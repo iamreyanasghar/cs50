@@ -1,0 +1,15 @@
+sort1 uses: Bubble Sort Algorithm
+
+How do you know?: Because it was completed faster that sort 3 for sorted numbers as it have Big Omega (n).
+
+sort2 uses: Merged Sort Algorithm 
+
+How do you know?: Because it takes least magnitude of time to execute for random numbers than other.
+
+sort3 uses: Selection Sort Algorithm
+
+How do you know?: It takes more time that sort 1 for sorted number as it have Big Omega (square of n).
+
+
+
+
