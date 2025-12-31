@@ -1,0 +1,31 @@
+Tags Used:
+html
+head
+link 
+script
+title
+body
+section
+li
+a
+ul
+button
+nav
+header
+main
+div
+section
+img
+h1
+p
+h2
+h3
+footer
+script
+
+Bootstraps Implementations:
+Hero and Features
+
+JavaScript Implementations:
+Drak mod button
+	
