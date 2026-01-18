@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h2>Profile Settings</h2>
+                
+                <!-- Update Profile -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5>Update Profile</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-4">
+                            <img src="/static/default.png" alt="Profile" class="profile-img-large">
+                        </div>
+                        
+                        <form action="/profile" method="post">
+                            <input type="hidden" name="action" value="update_profile">
+                            
+                            <div class="mb-3">
+                                <label for="display_name" class="form-label">Display Name</label>
+                                <input type="text" class="form-control" id="display_name" name="display_name" value="{{ user.display_name }}" required>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Update Profile</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Change Password -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5>Change Password</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="/profile" method="post">
+                            <input type="hidden" name="action" value="change_password">
+                            <div class="mb-3">
+                                <label for="current_password" class="form-label">Current Password</label>
+                                <input type="password" class="form-control" id="current_password" name="current_password" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="new_password" class="form-label">New Password</label>
+                                <input type="password" class="form-control" id="new_password" name="new_password" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirm_password" class="form-label">Confirm New Password</label>
+                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                            </div>
+                            <button type="submit" class="btn btn-warning">Change Password</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Delete Account -->
+                <div class="card border-danger">
+                    <div class="card-header bg-danger text-white">
+                        <h5>Danger Zone</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-danger">Once you delete your account, there is no going back. This will permanently delete your account and all your transaction data.</p>
+                        <form action="/profile" method="post" onsubmit="return confirm('Are you absolutely sure? This cannot be undone!')">
+                            <input type="hidden" name="action" value="delete_account">
+                            <div class="mb-3">
+                                <label for="confirm_delete" class="form-label">Type <strong>DELETE</strong> to confirm:</label>
+                                <input type="text" class="form-control" id="confirm_delete" name="confirm_delete" required>
+                            </div>
+                            <button type="submit" class="btn btn-danger">Delete Account</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="mt-3">
+                    <a href="/dashboard" class="btn btn-secondary">Back to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Manage Transaction
+{% endblock %}
+
+{% block main %}
+    {% if transaction %}
+        <h2>Edit Transaction</h2>
+        <form action="/manage" method="post">
+            <input type="hidden" name="action" value="edit">
+            <input type="hidden" name="id" value="{{ transaction.id }}">
+            
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{ transaction.title or '' }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="type" class="form-label">Transaction Type</label>
+                <select class="form-select" id="type" name="type" required>
+                    <option value="income" {% if transaction.type == 'income' %}selected{% endif %}>Income</option>
+                    <option value="expense" {% if transaction.type == 'expense' %}selected{% endif %}>Expense</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <select class="form-select" id="category" name="category" required>
+                    <optgroup label="Income Categories">
+                        <option value="salary" {% if transaction.category == 'salary' %}selected{% endif %}>Salary</option>
+                        <option value="freelance" {% if transaction.category == 'freelance' %}selected{% endif %}>Freelance</option>
+                        <option value="investment" {% if transaction.category == 'investment' %}selected{% endif %}>Investment</option>
+                        <option value="other_income" {% if transaction.category == 'other_income' %}selected{% endif %}>Other Income</option>
+                    </optgroup>
+                    <optgroup label="Expense Categories">
+                        <option value="food" {% if transaction.category == 'food' %}selected{% endif %}>Food & Dining</option>
+                        <option value="transportation" {% if transaction.category == 'transportation' %}selected{% endif %}>Transportation</option>
+                        <option value="shopping" {% if transaction.category == 'shopping' %}selected{% endif %}>Shopping</option>
+                        <option value="entertainment" {% if transaction.category == 'entertainment' %}selected{% endif %}>Entertainment</option>
+                        <option value="bills" {% if transaction.category == 'bills' %}selected{% endif %}>Bills & Utilities</option>
+                        <option value="healthcare" {% if transaction.category == 'healthcare' %}selected{% endif %}>Healthcare</option>
+                        <option value="education" {% if transaction.category == 'education' %}selected{% endif %}>Education</option>
+                        <option value="other_expense" {% if transaction.category == 'other_expense' %}selected{% endif %}>Other Expense</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="amount" class="form-label">Amount</label>
+                <input type="number" class="form-control" id="amount" name="amount" step="0.01" min="0.01" value="{{ transaction.amount }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description (Optional)</label>
+                <input type="text" class="form-control" id="description" name="description" value="{{ transaction.description or '' }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Update Transaction</button>
+            <a href="/history" class="btn btn-secondary">Cancel</a>
+        </form>
+        
+        <hr class="my-4">
+        
+        <div class="alert alert-danger">
+            <h5>Danger Zone</h5>
+            <p>Once you delete a transaction, there is no going back. Please be certain.</p>
+            <form action="/manage" method="post" onsubmit="return confirm('Are you sure you want to delete this transaction?')">
+                <input type="hidden" name="action" value="delete">
+                <input type="hidden" name="id" value="{{ transaction.id }}">
+                <button type="submit" class="btn btn-danger">Delete Transaction</button>
+            </form>
+        </div>
+    {% else %}
+        <div class="alert alert-warning">
+            <h4>No Transaction Selected</h4>
+            <p>Please select a transaction to manage from your transaction history.</p>
+            <a href="/history" class="btn btn-primary">View Transaction History</a>
+        </div>
+    {% endif %}
+{% endblock %}

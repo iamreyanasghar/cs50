@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Transaction History
+{% endblock %}
+
+{% block main %}
+    <h2>Transaction History</h2>
+    
+    {% if transactions %}
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in transactions %}
+                        <tr>
+                            <td>{{ transaction.date }}</td>
+                            <td>{{ transaction.title }}</td>
+                            <td>
+                                <span class="badge {% if transaction.type == 'income' %}bg-success{% else %}bg-danger{% endif %}">
+                                    {{ transaction.type.title() }}
+                                </span>
+                            </td>
+                            <td>{{ transaction.category }}</td>
+                            <td>{{ transaction.amount | usd }}</td>
+                            <td>{{ transaction.description or "-" }}</td>
+                            <td>
+                                <a href="/manage?id={{ transaction.id }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            <h4>No Transactions Found</h4>
+            <p>You haven't added any transactions yet.</p>
+            <a href="/add" class="btn btn-success">Add Your First Transaction</a>
+        </div>
+    {% endif %}
+    
+    <div class="mt-3">
+        <a href="/dashboard" class="btn btn-secondary">Back to Dashboard</a>
+        <a href="/add" class="btn btn-success">Add New Transaction</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Transaction
+{% endblock %}
+
+{% block main %}
+    <form action="/add" method="post">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Enter transaction title" required>
+        </div>
+        <div class="mb-3">
+            <label for="type" class="form-label">Transaction Type</label>
+            <select class="form-select" id="type" name="type" required>
+                <option value="">Select Type</option>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select class="form-select" id="category" name="category" required>
+                <option value="">Select Category</option>
+                <optgroup label="Income Categories">
+                    <option value="salary">Salary</option>
+                    <option value="freelance">Freelance</option>
+                    <option value="investment">Investment</option>
+                    <option value="other_income">Other Income</option>
+                </optgroup>
+                <optgroup label="Expense Categories">
+                    <option value="food">Food & Dining</option>
+                    <option value="transportation">Transportation</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="bills">Bills & Utilities</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="education">Education</option>
+                    <option value="other_expense">Other Expense</option>
+                </optgroup>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="amount" class="form-label">Amount</label>
+            <input type="number" class="form-control" id="amount" name="amount" step="0.01" min="0.01" placeholder="0.00" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description (Optional)</label>
+            <input type="text" class="form-control" id="description" name="description" placeholder="Enter description">
+        </div>
+        <button type="submit" class="btn btn-primary">Add Transaction</button>
+        <a href="/" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

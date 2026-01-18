@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Welcome
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="text-center mb-5">
+                    <h1 class="display-4">Personal Finance Tracker</h1>
+                    <p class="lead">Take control of your finances with our easy-to-use personal finance tracker</p>
+                </div>
+
+                <div class="row mb-5">
+                    <div class="col-md-4 text-center mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title text-success">📊 Track Income</h5>
+                                <p class="card-text">Monitor all your income sources including salary, freelance work, and investments.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title text-danger">💰 Manage Expenses</h5>
+                                <p class="card-text">Keep track of your spending across different categories like food, transportation, and entertainment.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">📈 View Reports</h5>
+                                <p class="card-text">Get insights into your financial health with detailed reports and balance tracking.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    {% if session["user_id"] %}
+                        <a href="/dashboard" class="btn btn-primary btn-lg me-3">Go to Dashboard</a>
+                        <a href="/add" class="btn btn-success btn-lg">Add Transaction</a>
+                    {% else %}
+                        <a href="/register" class="btn btn-primary btn-lg me-3">Get Started</a>
+                        <a href="/login" class="btn btn-outline-primary btn-lg">Sign In</a>
+                    {% endif %}
+                </div>
+
+                <div class="mt-5">
+                    <h3 class="text-center mb-4">Why Choose Our Finance Tracker?</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-2">✅ <strong>Secure & Private:</strong> Your data is protected with industry-standard security</li>
+                                <li class="mb-2">✅ <strong>Easy to Use:</strong> Simple interface designed for everyone</li>
+                                <li class="mb-2">✅ <strong>Categorized Tracking:</strong> Organize transactions by income and expense categories</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-2">✅ <strong>Real-time Balance:</strong> See your financial status at a glance</li>
+                                <li class="mb-2">✅ <strong>Transaction History:</strong> Complete record of all your financial activities</li>
+                                <li class="mb-2">✅ <strong>Edit & Manage:</strong> Full control over your transaction records</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
